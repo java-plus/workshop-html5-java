@@ -48,7 +48,8 @@ Tester l'URL : `http://localhost:8080/test.html`.
 ![](images/app-pizza-lister.png)
 
 ## Itération 6 : Ajouter un livreur.
-    * Le livreur a les informations suivantes : `nom`, `prenom`.
+
+* Le livreur a les informations suivantes : `nom`, `prenom`.
 
 > En cas de succès, rediriger vers la liste des clients.
 
