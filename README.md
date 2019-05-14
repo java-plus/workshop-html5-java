@@ -17,12 +17,13 @@ Tester l'URL : `http://localhost:8080/test.html`.
 
 > Les données pourront être stockées dans des structures Java.
 
-* Itération 1 : Intégrer la page d'accueil (URL `http://localhost:8080/`).
-    * Y ajouter des liens vers la gestion des clients, livreurs, commandes, ...
+## Itération 1 : Intégrer la page d'accueil 
+
+* Y ajouter des liens vers la gestion des clients, livreurs, commandes, ...
     
 ![](images/app-accueil.png)
 
-* Itération 2 : Ajouter un client.
+## Itération 2 : Ajouter un client.
 
 ![](images/app-client-create.png)
 
@@ -30,11 +31,11 @@ Tester l'URL : `http://localhost:8080/test.html`.
 
 > En cas d'échec, réafficher le formulaire avec un message d'erreur (tous les champs sont obligatoires).
 
-* Itération 3 : Afficher la liste des clients.
+## Itération 3 : Afficher la liste des clients.
 
 ![](images/app-client-lister.png)
 
-* Itération 4 : Ajouter une pizza.
+## Itération 4 : Ajouter une pizza.
 
 ![](images/app-pizza-create.png)
 
@@ -42,11 +43,11 @@ Tester l'URL : `http://localhost:8080/test.html`.
 
 > En cas d'échec, réafficher le formulaire avec un message d'erreur (tous les champs sont obligatoires).
 
-* Itération 5 : Afficher la liste des pizzas.
+## Itération 5 : Afficher la liste des pizzas.
 
 ![](images/app-pizza-lister.png)
 
-* Itération 6 : Ajouter un livreur.
+## Itération 6 : Ajouter un livreur.
     * Le livreur a les informations suivantes : `nom`, `prenom`.
 
 > En cas de succès, rediriger vers la liste des clients.
@@ -54,12 +55,12 @@ Tester l'URL : `http://localhost:8080/test.html`.
 > En cas d'échec, réafficher le formulaire avec un message d'erreur (tous les champs sont obligatoires).
 
 
-* Itération 7 : Afficher la liste des livreurs.
+## Itération 7 : Afficher la liste des livreurs.
 
-* Itération 8 : Ajouter une commande.
+## Itération 8 : Ajouter une commande.
 
 ![](images/app-commande-create.png)
 
-* Itération 9 :Afficher la liste des commandes.
+## Itération 9 :Afficher la liste des commandes.
 
 ![](images/app-commande-lister.png)
