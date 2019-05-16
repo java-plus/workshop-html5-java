@@ -1,4 +1,4 @@
-package dev.pizzeria.controller;
+package dev.pizzeria.controller.clients;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +42,21 @@ public class ClientController extends HttpServlet {
 	public StringBuilder afficherListeClients() {
 
 		StringBuilder myStringBuilderListe = new StringBuilder();
+
 		myStringBuilderListe.append("<section><h2>Liste des Clients :</h2>");
+
+		for (Client client : listClients) {
+			String monNom = client.getNom();
+			String monPrenom = client.getPrenom();
+			String maVille = client.getVille();
+			int monAge = client.getAge();
+			int monId = client.getId();
+
+			myStringBuilderListe.append("<ul>").append("<li><span>ID : ").append(monId).append("</span>")
+					.append("<span>").append(monNom).append("</span>").append("<span>").append(monPrenom)
+					.append("</span>").append("<span>").append(maVille).append("</span>").append("<span>")
+					.append(monAge).append("</span>").append("</li></ul>");
+		}
 
 		for (int i = 0; i < listClients.size(); i++) {
 
@@ -128,9 +142,7 @@ public class ClientController extends HttpServlet {
 			PrintWriter writer = resp.getWriter();
 			writer.write(template);
 
-		} catch (
-
-		URISyntaxException e) {
+		} catch (URISyntaxException e) {
 			LOGGER.error("Fichier HTML non trouvé", e);
 		}
 
@@ -138,6 +150,8 @@ public class ClientController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// TODO : gerer les erreurs et récupérer ce qui a deja ete entre dans les input afin de ne pas renvoyer une page avec des champs vides
 
 		// récupération des paramètres enregistrés par le client
 		String nom = req.getParameter("nom");

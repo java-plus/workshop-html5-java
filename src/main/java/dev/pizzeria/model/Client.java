@@ -3,6 +3,8 @@
  */
 package dev.pizzeria.model;
 
+import org.jgroups.util.UUID;
+
 /**
  * @author Eloi
  *
@@ -17,6 +19,7 @@ public class Client {
 	private int age;
 	private int id;
 	private static int compteur = 0;
+	private String uuid = UUID.randomUUID().toString();
 
 	/**
 	 * Constructor
@@ -171,6 +174,15 @@ public class Client {
 		} else if (!ville.equals(other.ville))
 			return false;
 		return true;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the uuid
+	 */
+	public String getUuid() {
+		return uuid;
 	}
 
 }

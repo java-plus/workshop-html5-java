@@ -7,7 +7,8 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import dev.pizzeria.controller.ClientController;
+import dev.pizzeria.controller.clients.ClientController;
+import dev.pizzeria.controller.pizzas.PizzaController;
 
 public class PizzeriaApp {
 
