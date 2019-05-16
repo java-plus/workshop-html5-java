@@ -12,62 +12,60 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.eclipse.jetty.io.ssl.ALPNProcessor.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.pizzeria.dao.ClientsDAO;
+import dev.pizzeria.dao.PizzasDAO;
 import dev.pizzeria.exception.FormException;
-import dev.pizzeria.model.Client;
+import dev.pizzeria.model.Pizza;
 
 /**
- * Classe de gestion d'un client de la pizzeria
+ * Controller pour gérer une pizza de la pizzeria.
  */
-public class ClientController extends HttpServlet {
+public class PizzaController extends HttpServlet {
 
 	/** Logger LOGGER */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
 	/**
 	 * boolean isFromACreatingError : indique s'il y a eu une précédente erreur lors
-	 * de l'envoi du formulaire de création
+	 * de l'envoi du formulaire
 	 */
 	private boolean isFromACreatingError = false;
 	/**
-	 * String TEMPLATE_CLIENT_CREER : spécifie l'adresse du template HTML qui
-	 * servira à générer la réponse
+	 * String TEMPLATE_PIZZA_CREER : addresse du template HTML de base pour générer
+	 * la réponse
 	 */
-	public static final String TEMPLATE_CLIENT_CREER = "templates/client.html";
+	public static final String TEMPLATE_PIZZA_CREER = "templates/pizza.html";
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			ajouterUnClient(req);
-			resp.sendRedirect("/clients");
+			ajouterUnePizza(req);
+			resp.sendRedirect("/pizzas");
 		} catch (FormException e) {
 			resp.setStatus(400);
-			LOGGER.info("Erreur d'insertion du client : " + e);
+			LOGGER.info("Erreur d'insertion d'une pizza : " + e);
 			isFromACreatingError = true;
-
-			resp.sendRedirect("/client");
+			resp.sendRedirect("/pizza");
 		}
 	}
 
 	/**
-	 * Ajoute un client à la base de données (List) de la pizzeria
+	 * Ajoute une pizza dans la base de données de la pizzeria (List)
 	 * 
 	 * @param req
 	 * @throws FormException
 	 */
-	public void ajouterUnClient(HttpServletRequest req) throws FormException {
+	public void ajouterUnePizza(HttpServletRequest req) throws FormException {
 		try {
-			String nom = req.getParameter("nom");
-			String prenom = req.getParameter("prenom");
-			String ville = req.getParameter("ville");
-			int age = Integer.parseInt(req.getParameter("age"));
+			String libelle = req.getParameter("libelle");
+			String reference = req.getParameter("reference");
+			String photo = req.getParameter("photo");
+			double prix = Double.parseDouble(req.getParameter("prix"));
 
-			if (nom.length() > 0 && prenom.length() > 0 && ville.length() > 0 && age > 0) {
-				ClientsDAO.clients.add(new Client(nom, prenom, ville, age));
+			if (libelle.length() > 0 && reference.length() > 0 && photo.length() > 0 && prix > 0) {
+				PizzasDAO.pizzas.add(new Pizza(libelle, reference, prix, photo));
 			} else {
 				throw new FormException("un des champs est vide.");
 			}
@@ -83,8 +81,7 @@ public class ClientController extends HttpServlet {
 			resp.setCharacterEncoding("UTF-8");
 
 			String template = Files
-					.readAllLines(
-							Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_CLIENT_CREER).toURI()))
+					.readAllLines(Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_PIZZA_CREER).toURI()))
 					.stream().collect(Collectors.joining());
 			if (isFromACreatingError) {
 				template = template.replaceAll("<msgSiErreur></msgSiErreur>",
