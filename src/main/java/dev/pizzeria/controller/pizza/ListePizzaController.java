@@ -1,4 +1,4 @@
-package dev.pizzeria.controller;
+package dev.pizzeria.controller.pizza;
 
 import static dev.pizzeria.controller.utils.RecupererHtmlUtils.recupererPageHtml;
 
@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import dev.pizzeria.dao.PizzaDao;
 import dev.pizzeria.model.Pizza;
 
+/**
+ * Classe gérant l'affichage de la liste des Pizzas
+ * 
+ * @author Kevin.s
+ *
+ */
 public class ListePizzaController extends HttpServlet {
 
 	/** LISTE_PIZZA : List<Pizza> liste des pizzas */
@@ -40,7 +46,6 @@ public class ListePizzaController extends HttpServlet {
 	 * @param sBuilder
 	 */
 	private void genererListePizza(StringBuilder sBuilder) {
-		// boucle générant la liste des clients
 		for (int i = 0; i < LISTE_PIZZA.size(); i++) {
 			sBuilder.append("<tr><td>").append(i).append("</td>")
 					.append("<td>").append(LISTE_PIZZA.get(i).getLibelle()).append("</td>")

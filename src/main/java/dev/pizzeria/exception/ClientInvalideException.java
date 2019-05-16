@@ -2,7 +2,7 @@ package dev.pizzeria.exception;
 
 /**
  * Exception lancé lorsque les données permettant de créer un nouveau client
- * sont invalide
+ * sont invalides
  * 
  * @author Kevin.s
  *

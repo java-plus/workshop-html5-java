@@ -1,4 +1,4 @@
-package dev.pizzeria.controller;
+package dev.pizzeria.controller.clients;
 
 import static dev.pizzeria.controller.utils.RecupererHtmlUtils.recupererPageHtml;
 

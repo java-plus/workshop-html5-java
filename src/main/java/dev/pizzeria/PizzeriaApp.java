@@ -7,11 +7,19 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import dev.pizzeria.controller.ClientController;
-import dev.pizzeria.controller.ListeClientController;
-import dev.pizzeria.controller.ListePizzaController;
-import dev.pizzeria.controller.PizzaController;
+import dev.pizzeria.controller.clients.ClientController;
+import dev.pizzeria.controller.clients.ListeClientController;
+import dev.pizzeria.controller.livreur.ListeLivreurController;
+import dev.pizzeria.controller.livreur.LivreurController;
+import dev.pizzeria.controller.pizza.ListePizzaController;
+import dev.pizzeria.controller.pizza.PizzaController;
 
+/**
+ * point d'entrée du site et gestion du serveur web
+ * 
+ * @author Kevin.s
+ *
+ */
 public class PizzeriaApp {
 
 	public static void main(String[] args) throws Exception {
@@ -36,6 +44,8 @@ public class PizzeriaApp {
 		context.addServlet(ListeClientController.class, "/listeClients");
 		context.addServlet(PizzaController.class, "/pizzas");
 		context.addServlet(ListePizzaController.class, "/listePizzas");
+		context.addServlet(LivreurController.class, "/livreurs");
+		context.addServlet(ListeLivreurController.class, "/listeLivreurs");
 
 		server.setHandler(context);
 		server.start();
