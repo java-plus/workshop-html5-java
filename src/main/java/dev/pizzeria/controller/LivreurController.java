@@ -17,62 +17,55 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.pizzeria.model.Client;
+import dev.pizzeria.model.Livreur;
 
-/**
- * Contrôleur responsable du traitement de la réquête : POST /clients.
- */
-public class ClientController extends HttpServlet {
+public class LivreurController extends HttpServlet {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
 
-	/**
-	 * Page HTML de la réponse en cas d'insertion effectuée. Fichier présent
-	 * dans le répertoire src/main/resources.
+	List<Livreur> listLivreur = new ArrayList();
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	public static final String TEMPLATE_CLIENT_INSERE = "templates/client_insere.html";
-
-	List<Client> listCli = new ArrayList();
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// récupération du paramètre nom
 		// <input name="nom">
 		String nom = req.getParameter("nom");
-		String prenom = req.getParameter("prenom");
-		String ville = req.getParameter("ville");
-		String age = req.getParameter("age");
+		String prenom = req.getParameter("prénom");
 
-		LOGGER.info("Paramètre nom reçu " + nom + " prenom " + prenom + " ville " + ville + " age " + age);
+		LOGGER.info("Paramètre nom reçu " + nom + " prénom " + prenom);
 
-		// TODO insérer un nouveau client en base de données
-
+		// TODO insérer un nouveau livreur en base de données
 		try {
 			// réponse au format UTF-8 pour le support des accents
 			resp.setCharacterEncoding("UTF-8");
 
-			if (!((nom == null || nom.equals("")) || (prenom == null || prenom.equals(""))
-					|| (ville == null || ville.equals("")) || (age == null || age.equals("")))) {
+			if (!((nom == null || nom.equals("")) || (prenom == null || prenom.equals("")))) {
 
 				// récupération du contenu du fichier template
 				String template = Files
-						.readAllLines(
-								Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_CLIENT_INSERE).toURI()))
+						.readAllLines(Paths.get(
+								this.getClass().getClassLoader().getResource("templates/livreur_insere.html").toURI()))
 						.stream().collect(Collectors.joining());
 
 				// écriture dans le corps de la réponse
 				PrintWriter writer = resp.getWriter();
 				writer.write(template);
 
-				Client client = new Client(nom, prenom, ville, age);
-				listCli.add(client);
+				Livreur livreur = new Livreur(nom, prenom);
+				listLivreur.add(livreur);
 
 			} else {
 				// récupération du contenu du fichier template
 				String templateAjout = Files
-						.readAllLines(Paths.get(
-								this.getClass().getClassLoader().getResource("templates/fail_ajoutCli.html").toURI()))
+						.readAllLines(Paths.get(this.getClass().getClassLoader()
+								.getResource("templates/fail_ajoutLivreur.html").toURI()))
 						.stream().collect(Collectors.joining());
 
 				// écriture dans le corps de la réponse
@@ -104,19 +97,18 @@ public class ClientController extends HttpServlet {
 
 			String template = Files
 					.readAllLines(Paths
-							.get(this.getClass().getClassLoader().getResource("templates/liste_client.html").toURI()))
+							.get(this.getClass().getClassLoader().getResource("templates/liste_livreur.html").toURI()))
 					.stream().collect(Collectors.joining());
 
 			String text = "";
 
-			for (Client client : listCli) {
-				text += "<tr><td>" + ++id + "</td><td>" + client.getNom() + "</td><td>" + client.getPrenom()
-						+ "</td><td>" + client.getVille() + "</td><td>" + client.getAge()
+			for (Livreur livreur : listLivreur) {
+				text += "<tr><td>" + ++id + "</td><td>" + livreur.getNom() + "</td><td>" + livreur.getPrenom() + "</td>"
 						+ "</td><td><a href=\"\">Modifier</a></td><td><a href=\"\">Supprimer</a></td></tr>";
 			}
 
 			PrintWriter writer = resp.getWriter();
-			writer.write(template.replaceAll("CLIENTAJOUT", text));
+			writer.write(template.replaceAll("LIVREURAJOUT", text));
 
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
