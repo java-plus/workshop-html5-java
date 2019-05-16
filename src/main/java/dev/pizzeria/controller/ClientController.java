@@ -99,6 +99,7 @@ public class ClientController extends HttpServlet {
 		page += "<html lang=\"fr\">";
 		page += "<head>";
 		page += "<meta charset=\"UTF-8\">";
+		page += "<link rel=\"stylesheet\" href=\"Style.css\" />";
 		page += "<title>Titre liste des clients</title>";
 		page += "</head>";
 		page += "<body>";
@@ -106,8 +107,8 @@ public class ClientController extends HttpServlet {
 		page += "<h1>Gestion des clients</h1>";
 		page += "<h2>Liste des clients</h2>";
 		page += "<table>";
-		page += "<tr>";
 		page += "<td><Strong>" + "ID      Nom     Prenom     Ville      Age" + "</Strong></td>";
+		page += "<tr>";
 		for (Client client : maListeClient) {
 
 			page += "<td>" + client.getId() + "</td>";
