@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Commande {
 	private int id;
-	private int nuumero;
+	private int numero;
 	private Date date;
 	private String client;
 	private String livreur;
