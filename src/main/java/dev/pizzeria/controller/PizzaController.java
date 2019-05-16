@@ -68,7 +68,21 @@ public class PizzaController extends HttpServlet {
 		LOGGER.info("photo reçue :" + photo);
 
 		if (libelle.isEmpty() || reference.isEmpty() || prixString.isEmpty() || photo.isEmpty()) {
-			resp.sendRedirect("/ajouter_pizza");
+
+//			resp.sendRedirect("/ajouter_pizza");
+
+			try {
+				String template = Files
+						.readAllLines(
+								Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_AJOUTER_PIZZA).toURI()))
+						.stream().collect(Collectors.joining());
+				PrintWriter writter = resp.getWriter();
+				writter.write(template.replaceAll("<input type =\"hidden\">", "<p>Tous les champs sont requis</p>"));
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 		else {

@@ -86,7 +86,7 @@ public class ClientController extends HttpServlet {
 						.stream().collect(Collectors.joining());
 
 				PrintWriter writter = resp.getWriter();
-				writter.write(template);
+				writter.write(template.replace("<input type =\"hidden\">", "<p>Tous les champs sont requis</p>"));
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
