@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -18,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.model.Client;
+import dev.pizzeria.model.PizzDao;
 
 /**
  * Contrôleur responsable du traitement de la réquête : POST /clients.
@@ -32,7 +31,8 @@ public class ClientController extends HttpServlet {
 	 */
 	public static final String TEMPLATE_CLIENT_INSERE = "templates/client_insere.html";
 
-	List<Client> listCli = new ArrayList();
+	// List<Client> listCli = new ArrayList();
+	PizzDao listCli = new PizzDao();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -109,7 +109,7 @@ public class ClientController extends HttpServlet {
 
 			String text = "";
 
-			for (Client client : listCli) {
+			for (Client client : listCli.findCli()) {
 				text += "<tr><td>" + ++id + "</td><td>" + client.getNom() + "</td><td>" + client.getPrenom()
 						+ "</td><td>" + client.getVille() + "</td><td>" + client.getAge()
 						+ "</td><td><a href=\"\">Modifier</a></td><td><a href=\"\">Supprimer</a></td></tr>";

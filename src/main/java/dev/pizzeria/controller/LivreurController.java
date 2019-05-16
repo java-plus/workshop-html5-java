@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -18,12 +16,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.model.Livreur;
+import dev.pizzeria.model.PizzDao;
 
 public class LivreurController extends HttpServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
 
-	List<Livreur> listLivreur = new ArrayList();
+	// List<Livreur> listLivreur = new ArrayList();
+	PizzDao listLivreur = new PizzDao();
 
 	/*
 	 * (non-Javadoc)
@@ -102,7 +102,7 @@ public class LivreurController extends HttpServlet {
 
 			String text = "";
 
-			for (Livreur livreur : listLivreur) {
+			for (Livreur livreur : listLivreur.findLiv()) {
 				text += "<tr><td>" + ++id + "</td><td>" + livreur.getNom() + "</td><td>" + livreur.getPrenom() + "</td>"
 						+ "</td><td><a href=\"\">Modifier</a></td><td><a href=\"\">Supprimer</a></td></tr>";
 			}
