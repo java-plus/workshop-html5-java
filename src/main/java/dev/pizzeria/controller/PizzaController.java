@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -18,11 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.model.Pizza;
+import dev.pizzeria.model.PizzeriaDaoPizza;
 
 public class PizzaController extends HttpServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
-	private List<Pizza> listePizzas = new ArrayList();
+	private PizzeriaDaoPizza dao = new PizzeriaDaoPizza();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -100,7 +99,7 @@ public class PizzaController extends HttpServlet {
 
 				Pizza pizza = new Pizza(libelle, reference, prix, photo);
 
-				listePizzas.add(pizza);
+				dao.add(pizza);
 			}
 
 		} catch (URISyntaxException e) {
@@ -125,7 +124,7 @@ public class PizzaController extends HttpServlet {
 			// Création d'un String pour stocker le code html à afficher
 			String texte = "";
 
-			for (Pizza pizza : listePizzas) {
+			for (Pizza pizza : dao.findPizza()) {
 				texte += "<tr><td>" + ++id + "</td><td>" + pizza.getLibelle() + "</td><td>" + pizza.getReference()
 						+ "</td><td>" + pizza.getPrix() + "</td><td>" + pizza.getPhoto()
 						+ "</td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>";

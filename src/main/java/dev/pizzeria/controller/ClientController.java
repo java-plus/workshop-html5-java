@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -18,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.model.Client;
+import dev.pizzeria.model.PizzariaDaoClient;
 
 /**
  * Contrôleur responsable du traitement de la réquête : POST /clients.
@@ -25,7 +24,7 @@ import dev.pizzeria.model.Client;
 public class ClientController extends HttpServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
-	private List<Client> listeClients = new ArrayList();
+	private PizzariaDaoClient dao = new PizzariaDaoClient();
 
 	/**
 	 * Page HTML de la réponse en cas d'insertion effectuée. Fichier présent
@@ -99,7 +98,7 @@ public class ClientController extends HttpServlet {
 
 				Client client = new Client(nom, prenom, ville, age);
 
-				listeClients.add(client);
+				dao.add(client);
 
 			}
 
@@ -126,7 +125,7 @@ public class ClientController extends HttpServlet {
 			// Création d'un String pour stocker le code html à afficher
 			String texte = "";
 
-			for (Client client : listeClients) {
+			for (Client client : dao.findClient()) {
 				texte += "<tr><td>" + ++id + "</td><td>" + client.getNom() + "</td><td>" + client.getPrenom()
 						+ "</td><td>" + client.getVille() + "</td><td>" + client.getAge()
 						+ "</td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>";

@@ -8,6 +8,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import dev.pizzeria.controller.ClientController;
+import dev.pizzeria.controller.CommandeController;
 import dev.pizzeria.controller.LivreurController;
 import dev.pizzeria.controller.PizzaController;
 
@@ -34,6 +35,7 @@ public class PizzeriaApp {
 		context.addServlet(ClientController.class, "/clients");
 		context.addServlet(PizzaController.class, "/pizzas");
 		context.addServlet(LivreurController.class, "/livreurs");
+		context.addServlet(CommandeController.class, "/commandes");
 
 		server.setHandler(context);
 		server.start();
