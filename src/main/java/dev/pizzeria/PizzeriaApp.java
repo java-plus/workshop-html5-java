@@ -9,10 +9,23 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import dev.pizzeria.controller.ClientController;
 import dev.pizzeria.controller.ClientsController;
+import dev.pizzeria.controller.LivreurController;
+import dev.pizzeria.controller.PizzaController;
+import dev.pizzeria.controller.PizzasController;
+import dev.pizzeria.dao.PizzasDAO;
+import dev.pizzeria.model.Pizza;
 
+/**
+ * Classe principale de lancement de l'application pizzeria
+ */
 public class PizzeriaApp {
 
 	public static void main(String[] args) throws Exception {
+
+		// ajout des pizzas initiales
+		PizzasDAO.pizzas.add(new Pizza("Reine", "PREI", 10, "/images/reine.jpg"));
+		PizzasDAO.pizzas.add(new Pizza("Regina", "PREG", 9, "/images/regina.jpg"));
+		PizzasDAO.pizzas.add(new Pizza("Napolitaine", "PNAP", 10, "/images/napolitaine.jpg"));
 
 		Server server = new Server();
 
@@ -28,15 +41,16 @@ public class PizzeriaApp {
 		context.addServlet(holderPwd, "/*");
 
 		// Les contrôleurs de l'application
-
-		// ClientController prend la main pour les requêtes /clients
-		context.addServlet(ClientController.class, "/client");
+		context.addServlet(ClientController.class, "/client"); // ClientController prend la main pour les requêtes
+																// /clients
 		context.addServlet(ClientsController.class, "/clients");
-
-		// map une URL à une classe
+		context.addServlet(PizzasController.class, "/pizzas");
+		context.addServlet(PizzaController.class, "/pizza");
+		context.addServlet(LivreurController.class, "/livreur");
 
 		server.setHandler(context);
 		server.start();
 		server.join();
+
 	}
 }

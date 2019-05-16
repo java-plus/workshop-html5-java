@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ajouter une pizza</title>
+  </head>
+  <body>
+    <header>
+      <h1>Ajouter une pizza</h1>
+    </header>
+    <main>
+      <section>
+      	<msgSiErreur></msgSiErreur>
+		<a href="/">Retour à l'accueil</a>
+        <form action="/pizza" method="post">
+          <label>Libellé</label>
+          <input type="text" name="libelle" required/> <br />
+          <label>Reference</label>
+          <input type="text" name="reference" required/> <br />
+          <label>Prix</label>
+          <input type="number" step="0.01" name="prix" required/> <br />
+          <label>Photo</label>
+          <input type="text" name="photo" required/> <br />
+          <input type="submit" value="Ajouter" />
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

@@ -10,16 +10,17 @@
     </header>
     <main>
       <section>
+      	<msgSiErreur></msgSiErreur>
         <h2>Création d'un client</h2>
         <form action="/client" method="post">
           <label>Nom</label>
-          <input type="text" name="nom" /> <br />
+          <input type="text" name="nom" required/> <br />
           <label>Prénom</label>
-          <input type="text" name="prenom" /> <br />
+          <input type="text" name="prenom" required/> <br />
           <label>Ville</label>
-          <input type="text" name="ville" /> <br />
+          <input type="text" name="ville" required/> <br />
           <label>Age</label>
-          <input type="number" name="age" /> <br />
+          <input type="number" name="age" required/> <br />
           <input type="submit" value="Ajouter" />
         </form>
       </section>
