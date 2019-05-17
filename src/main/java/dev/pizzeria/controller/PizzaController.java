@@ -48,6 +48,7 @@ public class PizzaController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le libellé est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 
 			} else if ((reference == null || "".equals(reference))) {
 				String templateAjout;
@@ -60,7 +61,7 @@ public class PizzaController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "La référence est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
-
+				resp.setStatus(400);
 			} else if ((prix == null || "".equals(prix))) {
 				String templateAjout;
 
@@ -72,6 +73,7 @@ public class PizzaController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le prix est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 
 			} else if ((photo == null || "".equals(photo))) {
 				String templateAjout;
@@ -84,6 +86,7 @@ public class PizzaController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "La photo est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 
 			} else {
 

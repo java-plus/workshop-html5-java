@@ -44,6 +44,7 @@ public class LivreurController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le nom est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((prenom == null || "".equals(prenom))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -53,6 +54,7 @@ public class LivreurController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le prénom est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else {
 
 				// récupération du contenu du fichier template

@@ -17,15 +17,4 @@ public class PizzeriaDaoLivreur extends PizzeriaDao {
 		return listeLivreur;
 	}
 
-	public Livreur findByCodeLivreur(String code) {
-		Livreur livreurTrouve = null;
-
-		for (Livreur liste : listeLivreur) {
-			if (liste.getNom().equals(code)) {
-
-				livreurTrouve = liste;
-			}
-		}
-		return livreurTrouve;
-	}
 }

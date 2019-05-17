@@ -57,6 +57,7 @@ public class ClientController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le nom est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((prenom == null || "".equals(prenom))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -66,6 +67,7 @@ public class ClientController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le prénom est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((ville == null || "".equals(ville))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -75,6 +77,7 @@ public class ClientController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "La ville est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((age == null || "".equals(age))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -84,6 +87,7 @@ public class ClientController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "L'age est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else {
 
 				// récupération du contenu du fichier template

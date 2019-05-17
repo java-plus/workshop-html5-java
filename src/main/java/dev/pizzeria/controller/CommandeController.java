@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -17,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.pizzeria.model.Commande;
-import dev.pizzeria.model.Livreur;
 import dev.pizzeria.model.PizzeriaDaoCommande;
-import dev.pizzeria.model.PizzeriaDaoLivreur;
 
 public class CommandeController extends HttpServlet {
 
@@ -50,6 +45,7 @@ public class CommandeController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le numéro est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((date == null || "".equals(date))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -59,6 +55,7 @@ public class CommandeController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "La date est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((livreur == null || "".equals(livreur))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -68,6 +65,7 @@ public class CommandeController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le livreur est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else if ((client == null || "".equals(client))) {
 				String templateAjout = Files
 						.readAllLines(Paths.get(
@@ -77,6 +75,7 @@ public class CommandeController extends HttpServlet {
 				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le client est obligatoire.");
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
+				resp.setStatus(400);
 			} else {
 
 				// récupération du contenu du fichier template
@@ -89,9 +88,9 @@ public class CommandeController extends HttpServlet {
 				PrintWriter writer = resp.getWriter();
 				writer.write(template);
 
-				Commande commande = new Commande(numero, date, livreur, client);
-
-				dao.add(commande);
+				// Commande commande = new Commande(numero, date, livreur,
+				// client);
+				// dao.add(commande);
 
 			}
 
@@ -117,15 +116,15 @@ public class CommandeController extends HttpServlet {
 			// Création d'un String pour stocker le code html à afficher
 			String texte = "";
 
-			 for (Commande commande : dao.findCommande()) {
-			 texte += "<tr><td>" + ++id + "</td><td>" + commande.getNumero() +
-			 "</td><td>" + commande.getDate()
-			 + "</td><td>" + commande.getLivreur() + "</td><td>" +
-			 commande.getClient()
-			 + "</td><td><a href=\"#\">Modifier</a></td><td><a
-			 href=\"#\">Supprimer</a></td></tr>";
-			
-			 }
+			// for (Commande commande : dao.findCommande()) {
+			// texte += "<tr><td>" + ++id + "</td><td>" + commande.getNumero() +
+			// "</td><td>" + commande.getDate()
+			// + "</td><td>" + commande.getLivreur() + "</td><td>" +
+			// commande.getClient()
+			// + "</td><td><a href=\"#\">Modifier</a></td><td><a
+			// href=\"#\">Supprimer</a></td></tr>";
+			//
+			// }
 
 			PrintWriter writer = resp.getWriter();
 			writer.write(template.replace("CLIENTAJOUT", texte));
