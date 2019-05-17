@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="UTF8" />
+        <title> Ajouter une pizza </title>
+    </head>
+    <body>
+    <h1>Ajouter une pizza</h1>
+    <form action="/pizzas" method="post" class="form-pizzas">
+            <div class="form-example">
+            <label for="libelle">Libellé : </label>
+            <input type="text" name="libelle" id="libelle" required>
+            </div>
+            <div class="form-example">
+            <label for="reference">Référence : </label>
+            <input type="text" name="reference" id="reference" required>
+            </div>
+            <div class="form-example">
+            <label for="prix">Prix : </label>
+            <input type="number" step="0.01" name="prix" id="prix" required>
+            </div>
+            <div class="form-example">
+            <label for="age">Lien image : </label>
+            <input type="text" name="image" id="image" required>
+            </div>
+            <div class="form-pizzas">
+            <input type="submit" value="Ajouter">
+            </div>
+      </form>
+    </body>
+</html>

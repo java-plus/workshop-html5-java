@@ -17,36 +17,32 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.pizzeria.model.Client;
+import dev.pizzeria.model.Pizza;
 
-/**
- * Contrôleur responsable du traitement de la réquête : POST /clients.
- */
-public class ClientController extends HttpServlet {
+public class PizzaController extends HttpServlet {
 
-	public static List<Client> listeClients = new ArrayList<>();
+	public static List<Pizza> listePizzas = new ArrayList<>();
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
 
-	/**
-	 * Page HTML de la réponse en cas d'insertion effectuée. Fichier présent
-	 * dans le répertoire src/main/resources.
-	 */
-	public static final String TEMPLATE_CLIENT_INSERE = "templates/client_insere.html";
+	public static final String TEMPLATE_PIZZA_INSEREE = "templates/pizza_inseree.html";
+
+	public PizzaController() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		// récupération du paramètre nom
 		// <input name="nom">
-		String nom = req.getParameter("nom");
+		String nom = req.getParameter("libelle");
 
 		LOGGER.info("Paramètre nom reçu " + nom);
 
-		// TODO insérer un nouveau client en base de données
-		// Ajout à la liste des clients
-		listeClients.add(new Client(req.getParameter("nom"), req.getParameter("prenom"), req.getParameter("ville"),
-				Integer.parseInt(req.getParameter("age"))));
+		// TODO insérer une nouvelle pizza en base de données
+		// Ajout à la liste des pizzas
+		listePizzas.add(new Pizza(req.getParameter("libelle"), req.getParameter("reference"),
+				Double.parseDouble(req.getParameter("prix")), req.getParameter("image")));
 
 		try {
 			// réponse au format UTF-8 pour le support des accents
@@ -55,11 +51,11 @@ public class ClientController extends HttpServlet {
 			// récupération du contenu du fichier template
 			String template = Files
 					.readAllLines(
-							Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_CLIENT_INSERE).toURI()))
+							Paths.get(this.getClass().getClassLoader().getResource(TEMPLATE_PIZZA_INSEREE).toURI()))
 					.stream().collect(Collectors.joining());
 
 			// Remplacement de texte de template
-			template = template.replace("codeARemplacer", "Client " + req.getParameter("nom") + " ajouté");
+			template = template.replace("codeARemplacer", "Pizza " + req.getParameter("libelle") + " ajoutée");
 
 			// écriture dans le corps de la réponse
 			PrintWriter writer = resp.getWriter();
