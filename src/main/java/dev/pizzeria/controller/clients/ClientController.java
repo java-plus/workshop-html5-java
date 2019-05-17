@@ -34,7 +34,6 @@ public class ClientController extends HttpServlet {
 	public static final String TEMPLATE_CLIENT_INSERE = "templates/client_infos.html";
 
 	/**
-	 * 
 	 * méthode permettant de construire le message html qui sera affiché dans le navigateur, et qui correspond à la liste de tous les clients existant dans la liste de client
 	 * 
 	 * @return StringBuilder contenant le message html
@@ -58,20 +57,6 @@ public class ClientController extends HttpServlet {
 					.append(monAge).append("</span>").append("</li></ul>");
 		}
 
-		for (int i = 0; i < listClients.size(); i++) {
-
-			Client client = listClients.get(i);
-			String monNom = client.getNom();
-			String monPrenom = client.getPrenom();
-			String maVille = client.getVille();
-			int monAge = client.getAge();
-			int monId = client.getId();
-
-			myStringBuilderListe.append("<ul>").append("<li><span>ID : ").append(monId).append("</span>")
-					.append("<span>").append(monNom).append("</span>").append("<span>").append(monPrenom)
-					.append("</span>").append("<span>").append(maVille).append("</span>").append("<span>")
-					.append(monAge).append("</span>").append("</li></ul>");
-		}
 		return myStringBuilderListe;
 	}
 

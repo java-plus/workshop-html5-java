@@ -4,9 +4,12 @@ html {
 }
 
 body{
-    color:#d6d6d6;
-    font-size: 1.6rem;
+    color:white;
+    font-size: 2rem;
     background:#1c1c1c;
+    background-image: url("images/fond.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
 
@@ -21,7 +24,7 @@ h1 {
 }
 
 h2 {
-	font-size: 2.5rem;
+	font-size: 4rem;
     line-height: 5rem;
 }
 
@@ -33,6 +36,9 @@ h2 {
 
 .titre span {
 	color: #c35757;
+    letter-spacing: 0.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 nav {
@@ -49,16 +55,14 @@ nav li + li {
 }
 
 
-
 nav a {
-	letter-spacing: 0.1rem;
-	
+	letter-spacing: 0.4rem;
     text-transform: uppercase;
 }
 
 nav a:hover{
 
-    color: #c3b068;
+    color: #f7c91c;
 }
 
 #content {
@@ -67,7 +71,7 @@ nav a:hover{
 }
 
 main {
-	line-height: 2rem;
+	line-height: 2.5rem;
 	margin: 50px 0;
 }
 
@@ -75,19 +79,19 @@ article {
 	margin: 20px 0;
 }
 
-.form-creer-client input, form-creer-pizza input {
+.form-creer-client input, .form-creer-pizza input {
 	height: 30px;
 }
 
 
-.form-creer-client div,  form-creer-pizza div {
+.form-creer-client div,  .form-creer-pizza div {
     margin: 20px 0;
     text-align: right;
 }
     
     
-    footer a {
-    	color:#864242;
-    }
+footer a {
+    color:#864242;
+}
 
 

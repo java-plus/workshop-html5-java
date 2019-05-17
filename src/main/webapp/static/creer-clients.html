@@ -1,70 +1,66 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <link href="reset-style.css" rel="stylesheet" type="text/css">
-        <link href="index-style.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab" rel="stylesheet">
-        <title>La Florentina - gestion clients</title>
-    </head>
 
-    <body>
-    
-    <div id="content">
-    
-    <header>
-    	<h1>Gestion des Clients</h1>
-    	<nav>
-    		<ul>
-    			<li><a href="index.html">Accueil</a></li>
-    			<li><a href="/clients">Liste des clients</a></li>
-    		</ul>
-    	</nav>
-    	
-    </header>
-    
-    <main>
-    
-    
-    
-    
-    
-    
-    <form class="form-creer-client" action="/clients" method="post">
-    
-	  <div>
-	    <label for="nom">Nom</label>
-	    <input type="text" name="nom" id="nom" required placeholder="votre nom" >
-	  </div>
-	  
-	  <div>
-	    <label for="prenom">Prénom</label>
-	    <input type="text" name="prenom" id="prenom" required placeholder="votre prénom">
-	  </div>
-	  
-	  <div>
-	    <label for="ville">ville </label>
-	    <input type="text" name="ville" id="ville" required placeholder="votre ville">
-	  </div>
-	  
-	  <div>
-	    <label for="age">age </label>
-	    <input type="number" name="age" id="age" required placeholder="votre age">
-	  </div>
-	  
-	  <div>
-	    <input type="submit" value="ajouter">
-	  </div>
-	  
-	</form>
-    
-    </main>
-    
-    </div>
-    
-    </body>
-    
-   
+<head>
+	<meta charset="utf-8" />
+	<link href="reset-style.css" rel="stylesheet" type="text/css">
+	<link href="index-style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab" rel="stylesheet">
+	<title>La Florentina - gestion clients</title>
+</head>
+
+<body>
+
+	<div id="content">
+
+		<header>
+			<h1>Gestion des Clients</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Accueil</a></li>
+					<li><a href="/clients">Liste des clients</a></li>
+				</ul>
+			</nav>
+
+		</header>
+
+		<main>
+
+			<form class="form-creer-client" action="/clients" method="post">
+
+				<div>
+					<label for="nom">Nom</label>
+					<input type="text" name="nom" id="nom" required placeholder="votre nom">
+				</div>
+
+				<div>
+					<label for="prenom">Prénom</label>
+					<input type="text" name="prenom" id="prenom" required placeholder="votre prénom">
+				</div>
+
+				<div>
+					<label for="ville">ville </label>
+					<input type="text" name="ville" id="ville" required placeholder="votre ville">
+				</div>
+
+				<div>
+					<label for="age">age </label>
+					<input type="number" name="age" id="age" required placeholder="votre age">
+				</div>
+
+				<div>
+					<input type="submit" value="ajouter">
+				</div>
+
+			</form>
+
+		</main>
+
+	</div>
+
+</body>
+
+
 
 
 </html>

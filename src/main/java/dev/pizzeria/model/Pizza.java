@@ -3,6 +3,8 @@
  */
 package dev.pizzeria.model;
 
+import org.jgroups.util.UUID;
+
 /**
  * @author Eloi
  *
@@ -10,11 +12,12 @@ package dev.pizzeria.model;
 public class Pizza {
 
 	private String libelle;
-	private Integer prix;
-	private Integer reference;
+	private Float prix;
+	private String reference;
 	private String photoUrl;
 	private int id;
 	private static int compteur = 0;
+	private String uuid = UUID.randomUUID().toString();
 
 	/**
 	 * Constructor
@@ -25,7 +28,7 @@ public class Pizza {
 	 * @param photoUrl
 	 */
 
-	public Pizza(String libelle, Integer id, Integer prix, String photoUrl) {
+	public Pizza(String libelle, Float prix, String photoUrl, String reference) {
 		this.libelle = libelle;
 		this.prix = prix;
 		this.reference = reference;
@@ -67,7 +70,7 @@ public class Pizza {
 	 * 
 	 * @return the prix
 	 */
-	public Integer getPrix() {
+	public Float getPrix() {
 		return prix;
 	}
 
@@ -77,7 +80,7 @@ public class Pizza {
 	 * @param prix
 	 *            the prix to set
 	 */
-	public void setPrix(Integer prix) {
+	public void setPrix(Float prix) {
 		this.prix = prix;
 	}
 
@@ -105,7 +108,7 @@ public class Pizza {
 	 * 
 	 * @return the reference
 	 */
-	public Integer getReference() {
+	public String getReference() {
 		return reference;
 	}
 
@@ -115,8 +118,17 @@ public class Pizza {
 	 * @param reference
 	 *            the reference to set
 	 */
-	public void setReference(Integer reference) {
+	public void setReference(String reference) {
 		this.reference = reference;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the uuid
+	 */
+	public String getUuid() {
+		return uuid;
 	}
 
 }
