@@ -1,0 +1,61 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+img {
+	max-width: 100%;
+}
+
+body {
+	background-color: sandybrown;
+	font-size: 2rem;
+	padding: 0 50px;
+}
+
+h1,
+h2,
+h3 {
+	text-align: center;
+	animation: bounce 0.5s;
+	animation-direction: alternate;
+	animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+	animation-iteration-count: infinite;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	text-align: center;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+/* animation */
+@keyframes bounce {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		transform: translate3d(0, 3px, 0);
+	}
+}
+
+/* Appliquer une mise en forme différente entre une taille d'écran < 700 px et une >= 700px. */
+/* @media screen and (max-width: 700px) {
+	body {
+		font-size: 1.5rem;
+		background-color: aqua;
+	}
+} */
+
+@media screen and (min-width: 700px) {
+	body {
+		font-size: 2.5rem;
+		background-color: greenyellow;
+	}
+}

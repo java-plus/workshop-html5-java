@@ -42,7 +42,8 @@ public class LivreursController extends HttpServlet {
 
 			String lignesLivreurs = "";
 			for (Livreur livreur : LivreursDAO.livreurs) {
-				lignesLivreurs += " <tr><td>" + livreur.getNom() + "</td><td>" + livreur.getPrenom() + "</td></tr>";
+				lignesLivreurs += " <tr><td>" + livreur.getNom() + "</td><td>" + livreur.getPrenom()
+						+ "</td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>";
 			}
 
 			String listeDesLivreurs = template.replaceAll("LIGNES_DES_LIVREURS_ICI", lignesLivreurs);
