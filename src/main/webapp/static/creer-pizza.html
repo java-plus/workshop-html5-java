@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link href="reset-style.css" rel="stylesheet" type="text/css">
+        <link href="index-style.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab" rel="stylesheet">
+        <title>La Florentina - gestion pizza</title>
+    </head>
+
+    <body>
+    
+    <div id="content">
+    
+    <header>
+    	<h1>Gestion des Pizzas</h1>
+    	<nav>
+    		<ul>
+    			<li><a href="index.html">Accueil</a></li>
+    			<li><a href="/clients">Liste des pizza</a></li>
+    		</ul>
+    	</nav>
+    	
+    </header>
+    
+    <main>
+    
+    
+    
+    <form class="form-creer-pizza" action="/pizzas" method="post" >
+    
+	  <div>
+	    <label for="libelle">Libellé</label>
+	    <input type="text" name="libelle" id="libelle" required placeholder="ex : 4 fromages" >
+	  </div>
+	  
+	  <div>
+	    <label for="reference">Réference</label>
+	    <input type="text" name="reference" id="reference" required placeholder="ex : 4FRO">
+	  </div>
+	  
+	  <div>
+	    <label for="prix">prix (en €)</label>
+	    <input type="number" name="prix" id="prix" required placeholder="ex : 10.5">
+	  </div>
+	  
+	  <div>
+	    <label for="photo">Photo</label>
+	    <input type="text" name="photo" id="photo" required placeholder="url de l'image">
+	  </div>
+	  
+	  <div>
+	    <input type="submit" value="ajouter">
+	  </div>
+	  
+	</form>
+    
+    </main>
+    
+    </div>
+    
+    </body>
+    
+   
+
+
+</html>
