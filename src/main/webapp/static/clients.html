@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ajout d'un client</title>
+</head>
+<body>
+
+	<h1>Gestion des clients</h1>
+	<h2>Creation d'un client</h2>
+	<br/><br/><br/>
+	<tr>
+		<td>Ajout</td>
+		<td><a href="http://localhost:8080/accueil.html">Retour à l'accueil</a></td>
+	</tr>
+
+	<form method="post" action="/clients">
+		<p>Nom</p>
+		<input type="text" id="name" name="nom" required/>
+	
+		<p>Prenom</p>
+		<input type="text" id="prenom" name="prenom" required/>
+
+		<p>Ville</p>
+		<input type="text" id="ville" name="ville" required/>
+
+		<p>Age</p>
+		<input type="text" id="age" name="age" required/>
+		
+		<!-- Création du bouton "Validation" dans le navigateur (en HTML)-->
+		<input type="submit" value= "Ajouter"/>
+	</form>
+	
+</body>
+</html>
