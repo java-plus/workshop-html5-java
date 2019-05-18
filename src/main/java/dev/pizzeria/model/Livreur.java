@@ -7,7 +7,7 @@ package dev.pizzeria.model;
  * @author Eloi
  *
  */
-public class Livreurs {
+public class Livreur {
 
 	private String nom;
 	private String prenom;
@@ -18,7 +18,7 @@ public class Livreurs {
 	 * @param nom
 	 * @param prenom
 	 */
-	public Livreurs(String nom, String prenom) {
+	public Livreur(String nom, String prenom) {
 		this.nom = nom;
 		this.prenom = prenom;
 	}

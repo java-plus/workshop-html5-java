@@ -42,7 +42,7 @@ public class ClientController extends HttpServlet {
 
 		StringBuilder myStringBuilderListe = new StringBuilder();
 
-		myStringBuilderListe.append("<section><h2>Liste des Clients :</h2>");
+		myStringBuilderListe.append("<section><div class='list'><h2>Liste des Clients :</h2>");
 
 		for (Client client : listClients) {
 			String monNom = client.getNom();
@@ -51,12 +51,12 @@ public class ClientController extends HttpServlet {
 			int monAge = client.getAge();
 			int monId = client.getId();
 
-			myStringBuilderListe.append("<ul>").append("<li><span>ID : ").append(monId).append("</span>")
-					.append("<span>").append(monNom).append("</span>").append("<span>").append(monPrenom)
-					.append("</span>").append("<span>").append(maVille).append("</span>").append("<span>")
-					.append(monAge).append("</span>").append("</li></ul>");
+			myStringBuilderListe.append("<ul><li><span>").append(monId).append("</span>").append("<span>")
+					.append(monNom).append("</span>").append("<span>").append(monPrenom).append("</span>")
+					.append("<span>").append(maVille).append("</span>").append("<span>").append(monAge)
+					.append("</span>").append("</li></ul>");
 		}
-
+		myStringBuilderListe.append("</div></section>");
 		return myStringBuilderListe;
 	}
 
@@ -88,10 +88,10 @@ public class ClientController extends HttpServlet {
 		int monId = client.getId();
 
 		// ajout du message affichant les parametre du nouveau client enregistré
-		myStringBuilderClient.append("<section><h2>Nouveau client inséré :</h2>").append("<ul><li>ID : ").append(monId)
-				.append("<li>NOM : ").append(monNom).append("</li>").append("<li>PRENOM : ").append(monPrenom)
-				.append("</li>").append("<li>VILLE : ").append(maVille).append("</li>").append("<li>AGE : ")
-				.append(monAge).append("</li></ul></section>");
+		myStringBuilderClient.append("<section><div class='list'><h2>Nouveau client inséré :</h2>")
+				.append("<ul><li>ID : ").append(monId).append("<li>NOM : ").append(monNom).append("</li>")
+				.append("<li>PRENOM : ").append(monPrenom).append("</li>").append("<li>VILLE : ").append(maVille)
+				.append("</li>").append("<li>AGE : ").append(monAge).append("</li></ul></div></section>");
 
 		return myStringBuilderClient;
 
@@ -119,6 +119,8 @@ public class ClientController extends HttpServlet {
 				int monId = Integer.parseInt(req.getParameter("id"));
 
 				template = template.replace("CodeNvClients", afficherNouveauClient(monId));
+			} else {
+				template = template.replace("CodeNvClients", "");
 			}
 
 			template = template.replace("CodeListeClients", afficherListeClients());

@@ -14,7 +14,8 @@
 	<div id="content">
 
 		<header>
-			<h1>Gestion des Pizzas</h1>
+			<div class="titre"><h1>La Florentina</h1><span>Pizzéria</span></div>
+			<h2>Gestion des Pizzas</h2>
 			<nav>
 				<ul>
 					<li><a href="index.html">Accueil</a></li>
@@ -27,25 +28,29 @@
 		<main>
 
 			<form class="form-creer-pizza" action="/pizzas" method="post">
+	
+				<div class="flex-form">
+					
+					<div>
+						<label for="libelle">Libellé</label>
+						<input type="text" name="libelle" id="libelle" required placeholder="ex : 4 fromages">
+					</div>
+	
+					<div>
+						<label for="reference">Réference</label>
+						<input type="text" name="reference" id="reference" required placeholder="ex : 4FRO">
+					</div>
+	
+					<div>
+						<label for="prix">prix (en €)</label>
+						<input type="number" name="prix" id="prix" step="0.01" required placeholder="ex : 10.5">
+					</div>
+	
+					<div>
+						<label for="photo">Photo</label>
+						<input type="text" name="photo" id="photo" required placeholder="url de l'image">
+					</div>
 
-				<div>
-					<label for="libelle">Libellé</label>
-					<input type="text" name="libelle" id="libelle" required placeholder="ex : 4 fromages">
-				</div>
-
-				<div>
-					<label for="reference">Réference</label>
-					<input type="text" name="reference" id="reference" required placeholder="ex : 4FRO">
-				</div>
-
-				<div>
-					<label for="prix">prix (en €)</label>
-					<input type="number" name="prix" id="prix" step="0.01" required placeholder="ex : 10.5">
-				</div>
-
-				<div>
-					<label for="photo">Photo</label>
-					<input type="text" name="photo" id="photo" required placeholder="url de l'image">
 				</div>
 
 				<div>
