@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.pizzeria.model.Commande;
 import dev.pizzeria.model.PizzeriaDaoCommande;
 
 public class CommandeController extends HttpServlet {
@@ -30,7 +31,7 @@ public class CommandeController extends HttpServlet {
 		String livreur = req.getParameter("livreur");
 		String client = req.getParameter("client");
 
-		LOGGER.info("Paramètre nom reçu " + numero + " " + date + " " + livreur + " " + client);
+		LOGGER.info("Paramètre nom reçu " + numero + " " + date);
 
 		try {
 			// réponse au format UTF-8 pour le support des accents
@@ -56,26 +57,26 @@ public class CommandeController extends HttpServlet {
 				PrintWriter writer = resp.getWriter();
 				writer.write(corpsReponseHTML);
 				resp.setStatus(400);
-			} else if ((livreur == null || "".equals(livreur))) {
-				String templateAjout = Files
-						.readAllLines(Paths.get(
-								this.getClass().getClassLoader().getResource("templates/commande_ajout.html").toURI()))
-						.stream().collect(Collectors.joining());
-
-				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le livreur est obligatoire.");
-				PrintWriter writer = resp.getWriter();
-				writer.write(corpsReponseHTML);
-				resp.setStatus(400);
-			} else if ((client == null || "".equals(client))) {
-				String templateAjout = Files
-						.readAllLines(Paths.get(
-								this.getClass().getClassLoader().getResource("templates/commande_ajout.html").toURI()))
-						.stream().collect(Collectors.joining());
-
-				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le client est obligatoire.");
-				PrintWriter writer = resp.getWriter();
-				writer.write(corpsReponseHTML);
-				resp.setStatus(400);
+//			} else if ((livreur == null || "".equals(livreur))) {
+//				String templateAjout = Files
+//						.readAllLines(Paths.get(
+//								this.getClass().getClassLoader().getResource("templates/commande_ajout.html").toURI()))
+//						.stream().collect(Collectors.joining());
+//
+//				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le livreur est obligatoire.");
+//				PrintWriter writer = resp.getWriter();
+//				writer.write(corpsReponseHTML);
+//				resp.setStatus(400);
+//			} else if ((client == null || "".equals(client))) {
+//				String templateAjout = Files
+//						.readAllLines(Paths.get(
+//								this.getClass().getClassLoader().getResource("templates/commande_ajout.html").toURI()))
+//						.stream().collect(Collectors.joining());
+//
+//				String corpsReponseHTML = templateAjout.replaceAll("AREMPLACER", "Le client est obligatoire.");
+//				PrintWriter writer = resp.getWriter();
+//				writer.write(corpsReponseHTML);
+//				resp.setStatus(400);
 			} else {
 
 				// récupération du contenu du fichier template
@@ -88,9 +89,8 @@ public class CommandeController extends HttpServlet {
 				PrintWriter writer = resp.getWriter();
 				writer.write(template);
 
-				// Commande commande = new Commande(numero, date, livreur,
-				// client);
-				// dao.add(commande);
+				Commande commande = new Commande(numero, date);
+				 dao.add(commande);
 
 			}
 
@@ -116,18 +116,14 @@ public class CommandeController extends HttpServlet {
 			// Création d'un String pour stocker le code html à afficher
 			String texte = "";
 
-			// for (Commande commande : dao.findCommande()) {
-			// texte += "<tr><td>" + ++id + "</td><td>" + commande.getNumero() +
-			// "</td><td>" + commande.getDate()
-			// + "</td><td>" + commande.getLivreur() + "</td><td>" +
-			// commande.getClient()
-			// + "</td><td><a href=\"#\">Modifier</a></td><td><a
-			// href=\"#\">Supprimer</a></td></tr>";
-			//
-			// }
+			 for (Commande commande : dao.findCommande()) {
+			 texte += "<tr><td>" + ++id + "</td><td>" + commande.getNumero() +
+			 "</td><td> "+ commande.getDate() + " </td><td> / </td><td> / </td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>";
+			
+			 }
 
 			PrintWriter writer = resp.getWriter();
-			writer.write(template.replace("CLIENTAJOUT", texte));
+			writer.write(template.replace("CDEAJOUT", texte));
 
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block

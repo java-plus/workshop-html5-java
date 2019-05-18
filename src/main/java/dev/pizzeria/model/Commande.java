@@ -4,9 +4,7 @@ public class Commande {
 
 	private String numero;
 	private String date;
-	private Livreur livreur;
-	private Client client;
-
+	
 	/**
 	 * Constructeur
 	 * 
@@ -15,12 +13,11 @@ public class Commande {
 	 * @param livreur
 	 * @param client
 	 */
-	public Commande(String numero, String date, Livreur livreur, Client client) {
+	public Commande(String numero, String date) {
 		super();
 		this.numero = numero;
 		this.date = date;
-		this.livreur = livreur;
-		this.client = client;
+	
 	}
 
 	/**
@@ -61,42 +58,6 @@ public class Commande {
 		this.date = date;
 	}
 
-	/**
-	 * Getter
-	 * 
-	 * @return the livreur
-	 */
-	public Livreur getLivreur() {
-		return livreur;
-	}
 
-	/**
-	 * Setter
-	 * 
-	 * @param livreur
-	 *            the livreur to set
-	 */
-	public void setLivreur(Livreur livreur) {
-		this.livreur = livreur;
-	}
-
-	/**
-	 * Getter
-	 * 
-	 * @return the client
-	 */
-	public Client getClient() {
-		return client;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param client
-	 *            the client to set
-	 */
-	public void setClient(Client client) {
-		this.client = client;
-	}
 
 }
