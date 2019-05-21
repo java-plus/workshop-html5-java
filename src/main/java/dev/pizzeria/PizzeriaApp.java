@@ -7,8 +7,10 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import dev.pizzeria.connection.ConnectionManager;
 import dev.pizzeria.controller.clients.ClientController;
 import dev.pizzeria.controller.pizzas.PizzaController;
+import dev.pizzeria.exception.TechnicalException;
 
 public class PizzeriaApp {
 
@@ -38,5 +40,13 @@ public class PizzeriaApp {
 		server.setHandler(context);
 		server.start();
 		server.join();
+
+		// recupération du driver sql pour la connection à la bdd
+		try {
+			Class.forName(ConnectionManager.getDriverName());
+		} catch (ClassNotFoundException e) {
+			throw new TechnicalException("Le driver JBDC n'a pas été trouvé.", e);
+		}
+
 	}
 }

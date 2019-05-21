@@ -3,7 +3,7 @@
  */
 package dev.pizzeria.model;
 
-import org.jgroups.util.UUID;
+import java.util.UUID;
 
 /**
  * @author Eloi
@@ -15,8 +15,6 @@ public class Pizza {
 	private Float prix;
 	private String reference;
 	private String photoUrl;
-	private int id;
-	private static int compteur = 0;
 	private String uuid = UUID.randomUUID().toString();
 
 	/**
@@ -33,8 +31,6 @@ public class Pizza {
 		this.prix = prix;
 		this.reference = reference;
 		this.photoUrl = photoUrl;
-		compteur++;
-		this.id = compteur;
 	}
 
 	/**
@@ -61,9 +57,9 @@ public class Pizza {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
-		return id;
-	}
+	// public Integer getId() {
+	// return id;
+	// }
 
 	/**
 	 * Getter
