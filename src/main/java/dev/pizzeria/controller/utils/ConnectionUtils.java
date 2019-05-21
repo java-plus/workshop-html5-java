@@ -24,7 +24,7 @@ public class ConnectionUtils {
 	/** conn : Connection */
 	private static Connection conn = null;
 	/** bddConf : ResourceBundle */
-	private static ResourceBundle bddConf = ResourceBundle.getBundle("connection");
+	private static ResourceBundle bddConf = ResourceBundle.getBundle("connectionCloud");
 
 	/**
 	 * Constructeur
