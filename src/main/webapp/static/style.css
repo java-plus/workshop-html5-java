@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+body > * {
+    padding: 10px;
+    flex: 1 100%;
+}
+
+head{
+    flex-basis: 100%;
+}
+
+li{
+    flex: 1;
+}

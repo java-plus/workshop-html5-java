@@ -5,9 +5,6 @@ import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -18,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.pizzeria.dao.PizzaDao;
 import dev.pizzeria.model.Pizza;
 
 public class PizzaController extends HttpServlet {
@@ -29,9 +27,7 @@ public class PizzaController extends HttpServlet {
 
 	public static final String TEMPLATE_AJOUTER_PIZZA = "templates/ajouter_pizza.html";
 
-	private static List<Pizza> listePizzas = new ArrayList<Pizza>();
-
-	private AtomicInteger incr = new AtomicInteger();
+	private PizzaDao dao = new PizzaDao();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -86,32 +82,13 @@ public class PizzaController extends HttpServlet {
 		}
 
 		else {
-			int prix = Integer.parseInt(prixString);
-			int id = incr.incrementAndGet();
-			Pizza pizza = new Pizza(id, libelle, reference, prix, photo);
-			listePizzas.add(pizza);
+			float prix = Float.parseFloat(prixString);
+			Pizza pizza = new Pizza(libelle, reference, prix, photo);
+			dao.saveNewPizza(pizza);
 
 			resp.sendRedirect("/liste_pizzas");
 
 		}
-	}
-
-	/**
-	 * Getter
-	 * 
-	 * @return the listePizzas
-	 */
-	public static List<Pizza> getListePizzas() {
-		return listePizzas;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param listePizzas the listePizzas to set
-	 */
-	public static void setListePizzas(List<Pizza> listePizzas) {
-		PizzaController.listePizzas = listePizzas;
 	}
 
 }

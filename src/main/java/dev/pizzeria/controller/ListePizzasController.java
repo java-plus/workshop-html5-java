@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dev.pizzeria.dao.PizzaDao;
 import dev.pizzeria.model.Pizza;
 
 public class ListePizzasController extends HttpServlet {
@@ -22,7 +23,7 @@ public class ListePizzasController extends HttpServlet {
 
 	public static final String TEMPLATE_LISTE_PIZZAS = "templates/liste_pizzas.html";
 
-	List<Pizza> listePizzas = PizzaController.getListePizzas();
+	private PizzaDao dao = new PizzaDao();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +36,8 @@ public class ListePizzasController extends HttpServlet {
 					.stream().collect(Collectors.joining());
 
 			StringBuilder str = new StringBuilder();
+
+			List<Pizza> listePizzas = dao.findAllPizzas();
 
 			for (int i = 0; i < listePizzas.size(); i++) {
 				str.append("<tr><td>" + listePizzas.get(i).getId() + "</td><td>" + listePizzas.get(i).getLibelle()

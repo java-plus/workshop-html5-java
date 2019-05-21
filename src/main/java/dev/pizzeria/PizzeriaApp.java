@@ -6,6 +6,8 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.controller.ClientController;
 import dev.pizzeria.controller.ListeClientsController;
@@ -13,11 +15,22 @@ import dev.pizzeria.controller.ListeLivreursController;
 import dev.pizzeria.controller.ListePizzasController;
 import dev.pizzeria.controller.LivreurController;
 import dev.pizzeria.controller.PizzaController;
+import dev.pizzeria.util.ConnectionManager;
 
 public class PizzeriaApp {
 
-	public static void main(String[] args) throws Exception {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PizzeriaApp.class);
 
+	public static void main(String[] args) {
+
+		// Configuration du driver
+		try {
+			Class.forName(ConnectionManager.getDriver());
+		} catch (ClassNotFoundException e) {
+			LOGGER.error("Driver introuvable", e);
+		}
+
+		// Config serveur
 		Server server = new Server();
 
 		ServerConnector connector = new ServerConnector(server);
@@ -42,7 +55,16 @@ public class PizzeriaApp {
 		context.addServlet(ListeLivreursController.class, "/liste_livreurs");
 
 		server.setHandler(context);
-		server.start();
-		server.join();
+		try {
+			server.start();
+		} catch (Exception e1) {
+			LOGGER.error("Démarrage du serveur impossible", e1);
+		}
+		try {
+			server.join();
+		} catch (InterruptedException e1) {
+			LOGGER.error("Erreur Serveur.join", e1);
+		}
+
 	}
 }

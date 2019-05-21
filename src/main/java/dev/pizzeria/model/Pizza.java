@@ -4,6 +4,10 @@ package dev.pizzeria.model;
  * @author Guillaume Classe modèle qui génère les pizzas
  *
  */
+/**
+ * @author Guillaume
+ *
+ */
 public class Pizza {
 
 	/** id : int */
@@ -12,8 +16,8 @@ public class Pizza {
 	private String libelle;
 	/** reference : String */
 	private String reference;
-	/** prix : int */
-	private int prix;
+	/** prix : float */
+	private float prix;
 	/** photo : String */
 	private String photo;
 
@@ -26,9 +30,18 @@ public class Pizza {
 	 * @param prix      : prix de la pizza
 	 * @param photo     : photo représentant la pizza
 	 */
-	public Pizza(int id, String libelle, String reference, int prix, String photo) {
+
+	public Pizza(int id, String libelle, String reference, float prix, String photo) {
 		super();
 		this.id = id;
+		this.libelle = libelle;
+		this.reference = reference;
+		this.prix = prix;
+		this.photo = photo;
+	}
+
+	public Pizza(String libelle, String reference, float prix, String photo) {
+		super();
 		this.libelle = libelle;
 		this.reference = reference;
 		this.prix = prix;
@@ -48,7 +61,7 @@ public class Pizza {
 		result = prime * result + id;
 		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
 		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
-		result = prime * result + prix;
+		result = prime * result + Float.floatToIntBits(prix);
 		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
 		return result;
 	}
@@ -74,7 +87,7 @@ public class Pizza {
 				return false;
 		} else if (!photo.equals(other.photo))
 			return false;
-		if (prix != other.prix)
+		if (Float.floatToIntBits(prix) != Float.floatToIntBits(other.prix))
 			return false;
 		if (reference == null) {
 			if (other.reference != null)
@@ -143,7 +156,7 @@ public class Pizza {
 	 * 
 	 * @return the prix
 	 */
-	public int getPrix() {
+	public float getPrix() {
 		return prix;
 	}
 
@@ -152,7 +165,7 @@ public class Pizza {
 	 * 
 	 * @param prix the prix to set
 	 */
-	public void setPrix(int prix) {
+	public void setPrix(float prix) {
 		this.prix = prix;
 	}
 
