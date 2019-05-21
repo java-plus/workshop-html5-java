@@ -3,7 +3,7 @@ package dev.pizzeria.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PizzariaDaoClient extends PizzeriaDao {
+public class PizzariaDaoClient {
 
 	List<Client> listeClient = new ArrayList();
 

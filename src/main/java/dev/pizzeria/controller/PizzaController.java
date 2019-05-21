@@ -17,10 +17,21 @@ import org.slf4j.LoggerFactory;
 
 import dev.pizzeria.model.Pizza;
 import dev.pizzeria.model.PizzeriaDaoPizza;
+import fr.diginamic.exception.TechnicalException;
 
+/**
+ * Classe qui controlle les pages web
+ * 
+ * @author Cécile Peyras
+ *
+ */
 public class PizzaController extends HttpServlet {
 
+	/** LOGGER : Logger */
 	private static final Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
+	/**
+	 * dao : PizzeriaDaoPizza - qui permet de gérer les informations sur la page
+	 */
 	private PizzeriaDaoPizza dao = new PizzeriaDaoPizza();
 
 	@Override
@@ -107,6 +118,7 @@ public class PizzaController extends HttpServlet {
 
 		} catch (URISyntaxException e) {
 			LOGGER.error("Fichier HTML non trouvé", e);
+			throw new TechnicalException("Fichier HTML non trouvé", e);
 		}
 
 	}
@@ -114,7 +126,6 @@ public class PizzaController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int id = 0;
 		try {
 
 			// réponse au format UTF-8 pour le support des accents
@@ -124,22 +135,23 @@ public class PizzaController extends HttpServlet {
 					.readAllLines(Paths
 							.get(this.getClass().getClassLoader().getResource("templates/liste_pizza.html").toURI()))
 					.stream().collect(Collectors.joining());
-			// Création d'un String pour stocker le code html à afficher
-			String texte = "";
+			// Création d'un StringBuilder pour stocker le code html à afficher
+			StringBuilder sb = new StringBuilder();
 
 			for (Pizza pizza : dao.findPizza()) {
-				texte += "<tr><td>" + ++id + "</td><td>" + pizza.getLibelle() + "</td><td>" + pizza.getReference()
-						+ "</td><td>" + pizza.getPrix() + "</td><td>" + pizza.getPhoto()
-						+ "</td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>";
+				sb.append("<tr><td>").append(pizza.getId()).append("</td><td>").append(pizza.getLibelle())
+						.append("</td><td>").append(pizza.getReference()).append("</td><td>").append(pizza.getPrix())
+						.append("</td><td><img style=\"max-width: 150px\" src=\"").append(pizza.getPhoto())
+						.append("\"></td><td><a href=\"#\">Modifier</a></td><td><a href=\"#\">Supprimer</a></td></tr>");
 
 			}
 
 			PrintWriter writer = resp.getWriter();
-			writer.write(template.replace("PIZZAAJOUT", texte));
+			writer.write(template.replace("PIZZAAJOUT", sb));
 
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Fichier HTML non trouvé", e);
+			throw new TechnicalException("Fichier HTML non trouvé", e);
 		}
 
 	}

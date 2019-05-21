@@ -1,10 +1,22 @@
 package dev.pizzeria.model;
 
+/**
+ * Classe qui gère les pizzas
+ * 
+ * @author Cécile Peyras
+ *
+ */
 public class Pizza {
 
+	/** id : int : incrémenté par la base de données */
+	private int id;
+	/** libelle : String : nom de la pizza */
 	private String libelle;
+	/** reference : String : référence de la pizza */
 	private String reference;
+	/** prix : String : prix de la pizza */
 	private String prix;
+	/** photo : String : lien url d'une pizza */
 	private String photo;
 
 	/**
@@ -15,8 +27,20 @@ public class Pizza {
 	 * @param prix
 	 * @param photo
 	 */
+	public Pizza(int id, String libelle, String reference, String prix, String photo) {
+		this(libelle, reference, prix, photo);
+		this.id = id;
+	}
+
+	/**
+	 * Constructeur
+	 * 
+	 * @param libelle
+	 * @param reference
+	 * @param prix
+	 * @param photo
+	 */
 	public Pizza(String libelle, String reference, String prix, String photo) {
-		super();
 		this.libelle = libelle;
 		this.reference = reference;
 		this.prix = prix;
@@ -97,6 +121,25 @@ public class Pizza {
 	 */
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
