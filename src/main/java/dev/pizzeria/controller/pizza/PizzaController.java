@@ -40,7 +40,8 @@ public class PizzaController extends HttpServlet {
 
 		try {
 			Pizza pizza = validerPizza(req);
-			PizzaDao.listePizza.add(pizza);
+			PizzaDao pizzaDao = new PizzaDao();
+			pizzaDao.ajouterPizza(pizza);
 			resp.sendRedirect("/listePizzas");
 
 		} catch (PizzaInvalideException e) {

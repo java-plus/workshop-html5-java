@@ -8,6 +8,8 @@ package dev.pizzeria.model;
  */
 public class Pizza {
 
+	/** id : Integer */
+	private Integer id;
 	/** libelle : String */
 	private String libelle;
 	/** reference : String */
@@ -151,6 +153,35 @@ public class Pizza {
 	 */
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * Setters
+	 * 
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * Setters
+	 * 
+	 * @param prix
+	 *            the prix to set
+	 */
+	public void setPrix(double prix) {
+		this.prix = prix;
 	}
 
 }
